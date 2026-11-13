@@ -24,7 +24,11 @@ export const LoginPage = () => {
       else if (role === 'RECEPTIONIST') navigate('/receptionist/dashboard');
       else navigate('/patient/dashboard');
     } catch (err) {
-      setError(err.response?.data?.detail || 'Invalid email or password. Please try again.');
+      if (!err.response) {
+        setError('Cannot connect to the backend server. Please make sure the backend is running on port 8000.');
+      } else {
+        setError(err.response?.data?.detail || 'Invalid email or password. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
