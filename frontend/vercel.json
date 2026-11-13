@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://carepoint-backend.onrender.com/api/$1"
+      "destination": "https://hospital-backend-1x1b.onrender.com/api/$1"
     },
     {
       "source": "/(.*)",

@@ -25,9 +25,15 @@ export const LoginPage = () => {
       else navigate('/patient/dashboard');
     } catch (err) {
       if (!err.response) {
-        setError('Cannot connect to the backend server. Please make sure the backend is running on port 8000.');
-      } else {
+        setError('Cannot connect to the backend server. Please verify your network and backend status.');
+      } else if (err.response.status === 401) {
         setError(err.response?.data?.detail || 'Invalid email or password. Please try again.');
+      } else if (err.response.status === 404) {
+        setError('Backend API not found (404). The backend URL in vercel.json needs your actual Render URL.');
+      } else if (err.response.status >= 500) {
+        setError(`Backend server error (${err.response.status}). The Render service is booting or encountered an error.`);
+      } else {
+        setError(err.response?.data?.detail || `Server returned error (${err.response.status}). Please check backend.`);
       }
     } finally {
       setLoading(false);
