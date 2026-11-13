@@ -1,0 +1,11 @@
+{
+  "name": "hospital-management-system",
+  "version": "1.0.0",
+  "description": "Online Hospital Appointment and Patient Management System",
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "backend": "cd backend && python -m uvicorn app.main:app --reload --port 8000"
+  }
+}
+
